@@ -1,0 +1,7 @@
+*
+!module
+!*.cpp
+!*.h
+!config.m4
+!Makefile.fcgi
+!.gitignore
