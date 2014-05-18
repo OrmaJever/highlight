@@ -68,7 +68,6 @@ public:
 	string &operator<<( const string & );
 
 	using std::string::operator=;
-	using std::string::string;
 
 	string toLower() const;
 	string toUpper() const;
