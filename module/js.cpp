@@ -67,7 +67,7 @@ void JS::parse_Numbers() throw(JSCode)
 void JS::parse_Comment() throw(JSCode)
 {
 	if(($_("//"))) {
-		newCode << TAG( JS_L_COMMENT ) "//";
+		newCode << TAG( JS_COMMENT ) "//";
 		i += 2;
 
 		while($(i) != '\n' && Size > i) {
@@ -77,14 +77,14 @@ void JS::parse_Comment() throw(JSCode)
 		newCode << END_TAG;
 		throw JSCode();
 	} else if($_("/*")) {
-		newCode << TAG( JS_D_COMMENT ) "/*";
+		newCode << TAG( JS_COMMENT ) "/*";
 		i += 2;
 
 		while(!$_("*/") && Size > i) {
 			if($(i) == '\n') {
 				newCode << END_TAG;
 				i += space(true);
-				newCode << TAG( JS_D_COMMENT );
+				newCode << TAG( JS_COMMENT );
 			} else {
 				htmlchars($(i++));
 			}
@@ -100,7 +100,7 @@ void JS::parse_Comment() throw(JSCode)
 void JS::parse_RegExp() throw(JSCode)
 {
 	char prev = $(i+space(false, -1)-1);
-	if(prev != '(' && prev != '(' && prev != ':')
+	if(prev != '(' && prev != ':')
 		return;
 
 	newCode << TAG( JS_REGEXP ) << $(i++);

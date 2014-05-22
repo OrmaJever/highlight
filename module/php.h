@@ -3,8 +3,7 @@
 
 #include "../data.h"
 
-#define PHP_OPEN_TAG           "phpOpenTag"
-#define PHP_CLOSE_TAG          "phpCloseTag"
+#define PHP_TAG          	   "phpTag"
 #define PHP_ODD_FIGURE_QUOTE   "phpOddFigureQuote"
 #define PHP_EVEN_FIGURE_QUOTE  "phpEvenFigureQuote"
 #define PHP_LUNE_QUOTE         "phpRoundQuote"
@@ -14,9 +13,7 @@
 #define PHP_NUMBER             "phpNumber"
 #define PHP_D_STRING           "phpDString"
 #define PHP_S_STRING           "phpSString"
-#define PHP_T_COMMENT          "phpTComment"
-#define PHP_L_COMMENT          "phpLComment"
-#define PHP_D_COMMENT          "phpDComment"
+#define PHP_COMMENT			   "phpComment"
 #define PHP_OPERATOR           "phpOperator"
 #define PHP_HEREDOC            "phpHeredoc"
 #define PHP_TYPE               "phpType"
@@ -42,7 +39,6 @@ public:
 
 private:
 
-	bool php;
 	signed short CLASS, bFigure, bRound, bSqr, sql;
 
 	void parse_OpenTag  ( void );

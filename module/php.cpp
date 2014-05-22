@@ -34,7 +34,7 @@ void PHP::operator()( void )
 
 void PHP::parse_OpenTag( void )
 {
-	newCode << TAG( PHP_OPEN_TAG ) "&lt;?";
+	newCode << TAG( PHP_TAG ) "&lt;?";
 	if(($(i+2) == 'p' || $(i+2) == 'P') && ($(i+3) == 'h' || $(i+3) == 'H') && ($(i+4) == 'p' || $(i+4) == 'P')) {
 		newCode << $(i+2) << $(i+3) << $(i+4);
 		i += 5;
@@ -50,7 +50,7 @@ void PHP::parse_OpenTag( void )
 
 void PHP::parse_CloseTag( void ) throw(HTMLCode)
 {
-	newCode << TAG( PHP_CLOSE_TAG ) "?&gt;" END_TAG;
+	newCode << TAG( PHP_TAG ) "?&gt;" END_TAG;
 	i += 2;
 	throw HTMLCode();
 }
@@ -182,10 +182,10 @@ void PHP::parse_Comment( void ) throw(PHPCode)
 {
 	if(($_("//")) || $(i) == '#') {
 		if($(i) == '#') {
-			newCode << TAG( PHP_T_COMMENT ) "#";
+			newCode << TAG( PHP_COMMENT ) "#";
 			i += 1;
 		} else {
-			newCode << TAG( PHP_L_COMMENT ) "//";
+			newCode << TAG( PHP_COMMENT ) "//";
 			i += 2;
 		}
 
@@ -197,14 +197,14 @@ void PHP::parse_Comment( void ) throw(PHPCode)
 		throw PHPCode();
 
 	} else if($_("/*")) {
-		newCode << TAG( PHP_D_COMMENT ) "/*";
+		newCode << TAG( PHP_COMMENT ) "/*";
 		i += 2;
 
 		while(!$_("*/") && Size > i) {
 			if($(i) == '\n') {
 				newCode << END_TAG;
 				i += space(true);
-				newCode << TAG( PHP_D_COMMENT );
+				newCode << TAG( PHP_COMMENT );
 			} else {
 				htmlchars($(i++));
 			}

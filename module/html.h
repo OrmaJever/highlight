@@ -7,7 +7,7 @@
 #define HTML_NAME		"htmlKey"
 #define HTML_VALUE		"htmlValue"
 #define HTML_LINK		"htmlLink"
-#define HTML_COMMENT	"htmlcomment"
+#define HTML_COMMENT	"htmlComment"
 
 namespace HL {
 

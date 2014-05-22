@@ -47,7 +47,7 @@ const Data::string Data::highlight(string code, int f)
 	return newCode;
 }
 
-// ����� ��������� ���� �� ���������� ������� �� ����� word.h
+// find word in array words.h
 bool Data::in_array(const string& word, const char **array)
 {
 	while(*array != '\0') {
