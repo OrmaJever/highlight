@@ -15,7 +15,7 @@
 #define END_LINK "</a>"
 #define TAG(s) "<span class=\"" s "\">"
 #define END_TAG "</span>"
-#define BR "<br/>"
+#define BR "\n"
 
 namespace HL {
 
