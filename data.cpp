@@ -97,7 +97,7 @@ void Data::htmlchars(const char c)
 			newCode << "&quot;";
 			break;
 		case '\t':
-			newCode << "&nbsp;&nbsp;&nbsp;";
+			newCode << "&nbsp;&nbsp;&nbsp;&nbsp;";
 			break;
 		case '\r':
 			return;
