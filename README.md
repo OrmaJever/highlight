@@ -1,5 +1,4 @@
 code highlighter
-
 build like php extension:
 
 git clone https://github.com/OrmaJever/highlight.git
