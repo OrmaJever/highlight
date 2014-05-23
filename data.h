@@ -15,10 +15,6 @@
 #define END_LINK "</a>"
 #define TAG(s) "<span class=\"" s "\">"
 #define END_TAG "</span>"
-<<<<<<< HEAD
-=======
-#define BR "\n"
->>>>>>> c8410a10c33ab9a39eb1decc2609ff61ea812f34
 
 namespace HL {
 
