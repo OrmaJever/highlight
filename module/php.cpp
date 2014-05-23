@@ -165,7 +165,7 @@ void PHP::parse_String( void ) throw(PHPCode)
 				i += space(true);
 				newCode << (quote == '"' ? TAG( PHP_D_STRING ) : TAG( PHP_S_STRING ));
 			} else {
-				newCode << END_TAG BR TAG( SQL );
+				newCode << END_TAG << sep << TAG( SQL );
 				++i;
 			}
 			continue;

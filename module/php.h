@@ -27,7 +27,7 @@
 #define PHP_USER_CLASS         "phpUserClass"
 #define PHP_USER_FUNCT         "phpUserFunct"
 #define PHP_USER_CONST         "phpUserConst"
-#define SQL                	 "sql"
+#define SQL					   "sql"
 
 namespace HL {
 

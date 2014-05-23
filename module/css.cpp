@@ -71,10 +71,10 @@ void CSS::parse_tag()
 {
 	if($(i) == '.') {
 		++i;
-		newCode << TAG( CSS_CLASS ) << '.' << CALL(5) << END_TAG;
+		newCode << TAG( CSS_CLASS ) << '.' << CALL(7) << END_TAG;
 	} else if($(i) == '#') {
 		++i;
-		newCode << TAG( CSS_ID ) << '#' << CALL(5) << END_TAG;
+		newCode << TAG( CSS_ID ) << '#' << CALL(7) << END_TAG;
 	} else if(($(i) >= 'A' && $(i) <= 'Z') || ($(i) >= 'a' && $(i) <= 'z')) {
 		newCode << TAG( CSS_TAG ) << CALL(2) << END_TAG;
 	} else {

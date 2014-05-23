@@ -11,13 +11,14 @@
 using namespace HL;
 
 Data::string Data::Code, Data::newCode;
-unsigned int Data::i, Data::flag, Data::Size;
+unsigned int Data::i, Data::Size;
+char *Data::sep;
 
-const Data::string Data::highlight(string code, int f)
+const Data::string Data::highlight(string code, char *s)
 {
 	Code = code;
 	Size = Code.size();
-	flag = f;
+	sep = s;
 	i = 0;
 
 	bool _php = false, _js = false, _css = false;
@@ -28,11 +29,16 @@ const Data::string Data::highlight(string code, int f)
 	auto js   = JS();
 
 	while(Code.size() > i) try {
-		if(_php) php();
-		if(_css) css();
-		if(_js)  js();
-
+		if( _php ) php();
+		if( _css ) css();
+		if( _js )  js();
 		html();
+
+		if($_("<?")) throw PHPCode();
+		if($_("<style>")) throw CSSCode();
+		if($_("<script>")) throw JSCode();
+
+		html.htmlchars($(i++));
 
 	} catch( PHPCode ) {
 		_php = true;
@@ -82,7 +88,7 @@ void Data::htmlchars(const char c)
 			newCode << "&nbsp;";
 			break;
 		case '\n':
-			newCode << BR;
+			newCode << sep;
 			break;
 		case '<':
 			newCode << "&lt;";
@@ -157,6 +163,11 @@ bool Data::callback5(register char c, short)
 bool Data::callback6(register char c, short)
 {
 	return c < 'A' || (c > 'Z' && c < 'a') || c > 'z';
+}
+
+bool Data::callback7(register char c, short)
+{
+	return (c < '0' || (c > '9' && c < 'A') || (c > 'Z' && c < 'a') || c > 'z') && c != '_' && c != '-';
 }
 
 // Data::string class

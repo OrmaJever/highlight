@@ -100,7 +100,7 @@ void JS::parse_Comment() throw(JSCode)
 void JS::parse_RegExp() throw(JSCode)
 {
 	char prev = $(i+space(false, -1)-1);
-	if(prev != '(' && prev != ':')
+	if(prev != '(' && prev != ':' && prev != ';')
 		return;
 
 	newCode << TAG( JS_REGEXP ) << $(i++);

@@ -15,7 +15,6 @@
 #define END_LINK "</a>"
 #define TAG(s) "<span class=\"" s "\">"
 #define END_TAG "</span>"
-#define BR "<br/>"
 
 namespace HL {
 
@@ -34,8 +33,9 @@ public:
 	virtual bool callback4( char, short ); // [a-zA-Z-:_]*
 	virtual bool callback5( char, short ); // [a-zA-Z-]*
 	virtual bool callback6( char, short ); // [a-zA-Z]*
+	virtual bool callback7( char, short ); // [a-zA-Z0-9_-]*
 
-	static const string highlight( string, int );
+	static const string highlight( string, char * );
 	string getToken( bool (Data::*)(char, short) );
 
 protected:
@@ -47,7 +47,8 @@ protected:
 	class SQLCode {};
 
 	static string Code, newCode;
-	static unsigned int flag, i, Size;
+	static char *sep;
+	static unsigned int i, Size;
 
 	// read spaces and write if need
 	int space( bool write = false, signed char pos = 0 );

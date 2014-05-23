@@ -17,7 +17,9 @@ void HTML::operator()( void )
 		if($(i) == '<') parse_tag();
 
 		htmlchars($(i++));
-	} catch( HTMLCode ) {};
+	} catch( HTMLCode ) {
+		continue;
+	};
 }
 
 void HTML::parse_comment( void ) throw(HTMLCode)

@@ -13,13 +13,13 @@
 
 PHP_FUNCTION(highlight)
 {
-	char *code;
-	long len;
+	char *code, *sep = "\n";
+	long len, sep_len;
 	int flag = 0;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &code, &len) == FAILURE) return;
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|s", &code, &len, &sep, &sep_len) == FAILURE) return;
 
-	auto newCode = HL::Data::highlight(HL::Data::string(code), flag);
+	auto newCode = HL::Data::highlight(HL::Data::string(code), sep);
 	RETURN_STRING(newCode.c_str(), 1);
 }
 
