@@ -9,7 +9,7 @@ void JS::operator()( const char end ) throw(HTMLCode)
 {
 	i += space(true);
 
-	while((end && ($(i) != end || $(i-1) == '\\')) || (!end && !$_("</script>"))) try {
+	while(flag == 2 || (end && ($(i) != end || $(i-1) == '\\')) || (!end && !$_("</script>"))) try {
 		if(Size < i) break;
 
 		if($(i) == '\'' || $(i) == '"') parse_String();

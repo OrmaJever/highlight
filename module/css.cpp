@@ -9,7 +9,7 @@ void CSS::operator()( const char end )
 {
 	i += space(true);
 
-	while((end && $(i) != end) || (!end && $(i) != '<' && !$_("</style>"))) try {
+	while(flag == 4 || (end && $(i) != end) || (!end && $(i) != '<' && !$_("</style>"))) try {
 		if(Size < i) break;
 
 		parse_key();

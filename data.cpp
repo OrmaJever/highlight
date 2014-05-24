@@ -11,14 +11,15 @@
 using namespace HL;
 
 Data::string Data::Code, Data::newCode;
-unsigned int Data::i, Data::Size;
+unsigned int Data::i, Data::Size, Data::flag;
 char *Data::sep;
 
-const Data::string Data::highlight(string code, char *s)
+const Data::string Data::highlight(string code, char *s, int f)
 {
 	Code = code;
 	Size = Code.size();
 	sep = s;
+	flag = f;
 	i = 0;
 
 	bool _php = false, _js = false, _css = false;
@@ -29,10 +30,10 @@ const Data::string Data::highlight(string code, char *s)
 	auto js   = JS();
 
 	while(Code.size() > i) try {
-		if( _php ) php();
-		if( _css ) css();
-		if( _js )  js();
-		html();
+		if( flag == 1 || _php ) php();
+		if( flag == 4 || _css ) css();
+		if( flag == 2 || _js )  js();
+		if( !flag || flag == 8 ) html();
 
 		if($_("<?")) throw PHPCode();
 		if($_("<style>")) throw CSSCode();

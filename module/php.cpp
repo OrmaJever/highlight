@@ -7,9 +7,9 @@ using namespace HL;
 
 void PHP::operator()( void )
 {
-	parse_OpenTag();
+	if($_("<?")) parse_OpenTag();
 
-	while(Size > i) try {
+	while( (!flag || flag == 1) && Size > i ) try {
 		i += space(true);
 		if($(i) == '(') parse_Types();
 		parse_Quote();

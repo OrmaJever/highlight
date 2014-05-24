@@ -9,8 +9,7 @@ using namespace HL;
 
 void HTML::operator()( void )
 {
-	unsigned len = Code.size();
-	while(len > i) try {
+	while( (!flag || flag == 8) && Size > i ) try {
 		if($_("<?")) throw PHPCode();
 
 		if($_("<!--")) parse_comment();

@@ -17,9 +17,9 @@ PHP_FUNCTION(highlight)
 	long len, sep_len;
 	int flag = 0;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|s", &code, &len, &sep, &sep_len) == FAILURE) return;
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|s|l", &code, &len, &sep, &sep_len, &flag) == FAILURE) return;
 
-	auto newCode = HL::Data::highlight(HL::Data::string(code), sep);
+	auto newCode = HL::Data::highlight(HL::Data::string(code), sep, flag);
 	RETURN_STRING(newCode.c_str(), 1);
 }
 
@@ -31,6 +31,15 @@ PHP_MINFO_FUNCTION(highlight)
 	php_info_print_table_end();
 
 	DISPLAY_INI_ENTRIES();
+}
+
+PHP_MINIT_FUNCTION(highlight)
+{
+	REGISTER_LONG_CONSTANT("HIGHLIGHT_ALL", 0,    CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("LIKE_PHP",		1<<0, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("LIKE_JS",		1<<1, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("LIKE_CSS",		1<<2, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("LIKE_HTML",		1<<3, CONST_CS | CONST_PERSISTENT);
 }
 
 PHP_RSHUTDOWN_FUNCTION(highlight)
@@ -47,7 +56,8 @@ zend_module_entry highlight_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"highlight",
 	highlight_functions,
-	NULL, NULL, NULL,
+	PHP_MINIT(highlight),
+	NULL, NULL,
 	PHP_RSHUTDOWN(highlight),
 	PHP_MINFO(highlight),
 	VERSION,

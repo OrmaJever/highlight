@@ -35,7 +35,7 @@ public:
 	virtual bool callback6( char, short ); // [a-zA-Z]*
 	virtual bool callback7( char, short ); // [a-zA-Z0-9_-]*
 
-	static const string highlight( string, char * );
+	static const string highlight( string, char *, int );
 	string getToken( bool (Data::*)(char, short) );
 
 protected:
@@ -48,7 +48,7 @@ protected:
 
 	static string Code, newCode;
 	static char *sep;
-	static unsigned int i, Size;
+	static unsigned int i, Size, flag;
 
 	// read spaces and write if need
 	int space( bool write = false, signed char pos = 0 );
